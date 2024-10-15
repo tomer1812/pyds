@@ -1,0 +1,2268 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The documentation for the PyDTS software library.">
+      
+      
+        <meta name="author" content="Tomer Meir, Rom Gutman">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>Regularization - PyDTS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-Z0XYP3868P"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-Z0XYP3868P",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-Z0XYP3868P",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="None" data-md-color-accent="None">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#regularization" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PyDTS" class="md-header__button md-logo" aria-label="PyDTS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyDTS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Regularization
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tomer1812/pydts/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tomer1812/pydts
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PyDTS" class="md-nav__button md-logo" aria-label="PyDTS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    PyDTS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tomer1812/pydts/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tomer1812/pydts
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Methods
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Methods" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Methods
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methodsintro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Definitions and Estimation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methodsevaluation/" class="md-nav__link">
+        Evaluation Metrics
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" checked>
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EventTimesSampler/" class="md-nav__link">
+        Event Times Sampler
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Estimation Example
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Estimation Example" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Estimation Example
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UsageExample-Intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UsageExample-DataPreparation/" class="md-nav__link">
+        Data Preparation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UsageExample-FittingTwoStagesFitter/" class="md-nav__link">
+        Estimation with TwoStagesFitter
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UsageExample-FittingDataExpansionFitter/" class="md-nav__link">
+        Estimation with DataExpansionFitter
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UsageExample-RegroupingData/" class="md-nav__link">
+        Data Regrouping Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ModelsComparison/" class="md-nav__link">
+        Comparing the Estimation Methods
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PerformanceMeasures/" class="md-nav__link">
+        Evaluation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Regularization
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Regularization
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#predefined-regularization-parameters" class="md-nav__link">
+    Predefined Regularization Parameters
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tuning-regularization-parameters" class="md-nav__link">
+    Tuning Regularization Parameters
+  </a>
+  
+    <nav class="md-nav" aria-label="Tuning Regularization Parameters">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#penaltygridsearch" class="md-nav__link">
+    PenaltyGridSearch
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#penaltygridsearchcv" class="md-nav__link">
+    PenaltyGridSearchCV
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    References
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatedDataset/" class="md-nav__link">
+        Hospitalization LOS Simulation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/two_stages_fitter/" class="md-nav__link">
+        The Two Stages Procedure of Meir and Gorfine (2023) - Efron
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/two_stages_fitter_exact/" class="md-nav__link">
+        The Two Stages Procedure of Meir and Gorfine (2023) - Exact
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/data_expansion_fitter/" class="md-nav__link">
+        Data Expansion Procedure of Lee et al. (2018)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/event_times_sampler/" class="md-nav__link">
+        Event Times Sampler
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/evaluation/" class="md-nav__link">
+        Evaluation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/cross_validation/" class="md-nav__link">
+        Cross Validation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/model_selection/" class="md-nav__link">
+        Model Selection
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+(function() {
+  function addWidgetsRenderer() {
+    var requireJsScript = document.createElement('script');
+    requireJsScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js';
+
+    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
+    var jupyterWidgetsScript = document.createElement('script');
+    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
+    var widgetState;
+
+    // Fallback for older version:
+    try {
+      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
+
+      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
+        widgetRendererSrc = 'jupyter-js-widgets@*/dist/embed.js';
+      }
+    } catch(e) {}
+
+    jupyterWidgetsScript.src = widgetRendererSrc;
+
+    document.body.appendChild(requireJsScript);
+    document.body.appendChild(jupyterWidgetsScript);
+  }
+
+  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
+}());
+</script>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="regularization">Regularization<a class="headerlink" href="#regularization" title="Permanent link">¤</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Regularized regression can be easily accommodated only with TwoStagesFitter where we first estimate <span class="arithmatex">\(\beta_j\)</span> and then <span class="arithmatex">\(\alpha_{jt}\)</span>. Regularization is introduced by CoxPHFitter of lifelines with event-specific tuning parameters, <span class="arithmatex">\(\eta_j \geq 0\)</span>, and l1_ratio argument. </p>
+<p>For each <span class="arithmatex">\(j\)</span>, usually, a path of models in <span class="arithmatex">\(\eta_j\)</span> are fitted, and the value of l1_ratio defines the type of prediction model. In particular, ridge regression is performed by setting l1_ratio=0, lasso by l1_ratio=1, and elastic net by 0 &lt; l1_ratio &lt; 1.</p>
+<p>In the following, we present how to use PyDTS to fit a lasso regularized model, and how to tune the regularization parameters <span class="arithmatex">\(\eta_j\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>We start by generating data, as discussed in previous sections:</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">from</span> <span class="nn">pydts.examples_utils.generate_simulations_data</span> <span class="kn">import</span> <span class="n">generate_quick_start_df</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">import</span> <span class="nn">warnings</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">real_coef_dict</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="s2">&quot;alpha&quot;</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        <span class="mi">1</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="o">-</span><span class="mi">1</span> <span class="o">-</span> <span class="mf">0.3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">t</span><span class="p">),</span>
+<a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>        <span class="mi">2</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">t</span><span class="p">:</span> <span class="o">-</span><span class="mf">1.75</span> <span class="o">-</span> <span class="mf">0.15</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    <span class="p">},</span>
+<a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="s2">&quot;beta&quot;</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="mi">1</span><span class="p">:</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">([</span><span class="mf">0.8</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mf">2.5</span><span class="p">,</span> <span class="mi">2</span><span class="p">]),</span>
+<a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>        <span class="mi">2</span><span class="p">:</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="p">}</span>
+<a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="p">}</span>
+<a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>
+<a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="n">n_patients</span> <span class="o">=</span> <span class="mi">50000</span>
+<a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="n">n_cov</span> <span class="o">=</span> <span class="mi">5</span>
+<a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+<a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a><span class="n">patients_df</span> <span class="o">=</span> <span class="n">generate_quick_start_df</span><span class="p">(</span><span class="n">n_patients</span><span class="o">=</span><span class="n">n_patients</span><span class="p">,</span> <span class="n">n_cov</span><span class="o">=</span><span class="n">n_cov</span><span class="p">,</span> <span class="n">d_times</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">j_events</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> 
+<a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>                                      <span class="n">pid_col</span><span class="o">=</span><span class="s1">&#39;pid&#39;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">censoring_prob</span><span class="o">=</span><span class="mf">0.8</span><span class="p">,</span> 
+<a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>                                      <span class="n">real_coef_dict</span><span class="o">=</span><span class="n">real_coef_dict</span><span class="p">)</span>
+<a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+<a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">patients_df</span><span class="p">,</span> <span class="n">test_size</span><span class="o">=</span><span class="mf">0.2</span><span class="p">)</span>
+<a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>
+<a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="n">patients_df</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>pid</th>
+      <th>Z1</th>
+      <th>Z2</th>
+      <th>Z3</th>
+      <th>Z4</th>
+      <th>Z5</th>
+      <th>J</th>
+      <th>T</th>
+      <th>C</th>
+      <th>X</th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th>0</th>
+      <td>0</td>
+      <td>0.548814</td>
+      <td>0.715189</td>
+      <td>0.602763</td>
+      <td>0.544883</td>
+      <td>0.423655</td>
+      <td>0</td>
+      <td>31</td>
+      <td>10</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1</td>
+      <td>0.645894</td>
+      <td>0.437587</td>
+      <td>0.891773</td>
+      <td>0.963663</td>
+      <td>0.383442</td>
+      <td>0</td>
+      <td>31</td>
+      <td>24</td>
+      <td>24</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2</td>
+      <td>0.791725</td>
+      <td>0.528895</td>
+      <td>0.568045</td>
+      <td>0.925597</td>
+      <td>0.071036</td>
+      <td>0</td>
+      <td>17</td>
+      <td>11</td>
+      <td>11</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>3</td>
+      <td>0.087129</td>
+      <td>0.020218</td>
+      <td>0.832620</td>
+      <td>0.778157</td>
+      <td>0.870012</td>
+      <td>1</td>
+      <td>1</td>
+      <td>31</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>4</td>
+      <td>0.978618</td>
+      <td>0.799159</td>
+      <td>0.461479</td>
+      <td>0.780529</td>
+      <td>0.118274</td>
+      <td>0</td>
+      <td>15</td>
+      <td>14</td>
+      <td>14</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="predefined-regularization-parameters">Predefined Regularization Parameters<a class="headerlink" href="#predefined-regularization-parameters" title="Permanent link">¤</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Lasso with <span class="arithmatex">\(\eta_1=0.003\)</span> and <span class="arithmatex">\(\eta_2=0.005\)</span>, can be applied by</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">from</span> <span class="nn">pydts.fitters</span> <span class="kn">import</span> <span class="n">TwoStagesFitter</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">L1_regularized_fitter</span> <span class="o">=</span> <span class="n">TwoStagesFitter</span><span class="p">()</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="n">fit_beta_kwargs</span> <span class="o">=</span> <span class="p">{</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="s1">&#39;model_kwargs&#39;</span><span class="p">:</span> <span class="p">{</span>
+<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        <span class="mi">1</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;penalizer&#39;</span><span class="p">:</span> <span class="mf">0.003</span><span class="p">,</span> <span class="s1">&#39;l1_ratio&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">},</span>
+<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>        <span class="mi">2</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;penalizer&#39;</span><span class="p">:</span> <span class="mf">0.005</span><span class="p">,</span> <span class="s1">&#39;l1_ratio&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">}</span>
+<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}}</span>
+<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">L1_regularized_fitter</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span> <span class="o">=</span> <span class="n">patients_df</span><span class="o">.</span><span class="n">drop</span><span class="p">([</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">],</span> <span class="n">axis</span> <span class="o">=</span> <span class="mi">1</span><span class="p">),</span>
+<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>                          <span class="n">fit_beta_kwargs</span> <span class="o">=</span> <span class="n">fit_beta_kwargs</span><span class="p">)</span>
+<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">L1_regularized_fitter</span><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+</code>
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>j1_params</th>
+      <th>j1_SE</th>
+      <th>j2_params</th>
+      <th>j2_SE</th>
+    </tr>
+    <tr>
+      <th>covariate</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th>Z1</th>
+      <td>0.000002</td>
+      <td>0.000101</td>
+      <td>1.981085e-08</td>
+      <td>0.000024</td>
+    </tr>
+    <tr>
+      <th>Z2</th>
+      <td>-0.772797</td>
+      <td>0.025400</td>
+      <td>-7.976064e-07</td>
+      <td>0.000071</td>
+    </tr>
+    <tr>
+      <th>Z3</th>
+      <td>-0.761229</td>
+      <td>0.025532</td>
+      <td>-1.720702e-01</td>
+      <td>0.038499</td>
+    </tr>
+    <tr>
+      <th>Z4</th>
+      <td>-0.550481</td>
+      <td>0.025318</td>
+      <td>-8.073968e-07</td>
+      <td>0.000072</td>
+    </tr>
+    <tr>
+      <th>Z5</th>
+      <td>-0.338471</td>
+      <td>0.025211</td>
+      <td>-3.409610e-07</td>
+      <td>0.000031</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>
+
+Model summary for event: 1
+</code>
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>n_jt</th>
+      <th>success</th>
+      <th>alpha_jt</th>
+    </tr>
+    <tr>
+      <th>J</th>
+      <th>X</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th rowspan="30" valign="top">1</th>
+      <th>1</th>
+      <td>3374</td>
+      <td>True</td>
+      <td>-1.471644</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>2328</td>
+      <td>True</td>
+      <td>-1.714213</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1805</td>
+      <td>True</td>
+      <td>-1.859723</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1524</td>
+      <td>True</td>
+      <td>-1.920774</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>1214</td>
+      <td>True</td>
+      <td>-2.050566</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>1114</td>
+      <td>True</td>
+      <td>-2.038532</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>916</td>
+      <td>True</td>
+      <td>-2.142666</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>830</td>
+      <td>True</td>
+      <td>-2.151764</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>683</td>
+      <td>True</td>
+      <td>-2.257665</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>626</td>
+      <td>True</td>
+      <td>-2.258146</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>569</td>
+      <td>True</td>
+      <td>-2.268550</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>516</td>
+      <td>True</td>
+      <td>-2.281249</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>419</td>
+      <td>True</td>
+      <td>-2.406485</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>410</td>
+      <td>True</td>
+      <td>-2.340125</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>326</td>
+      <td>True</td>
+      <td>-2.482320</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>320</td>
+      <td>True</td>
+      <td>-2.415531</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>280</td>
+      <td>True</td>
+      <td>-2.460601</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>240</td>
+      <td>True</td>
+      <td>-2.526029</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>243</td>
+      <td>True</td>
+      <td>-2.422234</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>204</td>
+      <td>True</td>
+      <td>-2.506867</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>176</td>
+      <td>True</td>
+      <td>-2.564875</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>167</td>
+      <td>True</td>
+      <td>-2.524524</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>166</td>
+      <td>True</td>
+      <td>-2.431232</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>118</td>
+      <td>True</td>
+      <td>-2.667097</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>114</td>
+      <td>True</td>
+      <td>-2.596554</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>109</td>
+      <td>True</td>
+      <td>-2.527812</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>89</td>
+      <td>True</td>
+      <td>-2.614859</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>70</td>
+      <td>True</td>
+      <td>-2.731941</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>67</td>
+      <td>True</td>
+      <td>-2.645782</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>47</td>
+      <td>True</td>
+      <td>-2.856479</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>
+
+Model summary for event: 2
+</code>
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>n_jt</th>
+      <th>success</th>
+      <th>alpha_jt</th>
+    </tr>
+    <tr>
+      <th>J</th>
+      <th>X</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th rowspan="30" valign="top">2</th>
+      <th>1</th>
+      <td>1250</td>
+      <td>True</td>
+      <td>-3.578498</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>839</td>
+      <td>True</td>
+      <td>-3.857174</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>805</td>
+      <td>True</td>
+      <td>-3.793806</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>644</td>
+      <td>True</td>
+      <td>-3.922340</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>570</td>
+      <td>True</td>
+      <td>-3.953290</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>483</td>
+      <td>True</td>
+      <td>-4.033435</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>416</td>
+      <td>True</td>
+      <td>-4.097484</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>409</td>
+      <td>True</td>
+      <td>-4.031967</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>323</td>
+      <td>True</td>
+      <td>-4.185559</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>306</td>
+      <td>True</td>
+      <td>-4.159369</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>240</td>
+      <td>True</td>
+      <td>-4.326672</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>246</td>
+      <td>True</td>
+      <td>-4.222570</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>226</td>
+      <td>True</td>
+      <td>-4.228361</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>198</td>
+      <td>True</td>
+      <td>-4.280986</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>170</td>
+      <td>True</td>
+      <td>-4.351662</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>162</td>
+      <td>True</td>
+      <td>-4.321422</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>147</td>
+      <td>True</td>
+      <td>-4.335179</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>115</td>
+      <td>True</td>
+      <td>-4.497948</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>125</td>
+      <td>True</td>
+      <td>-4.329126</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>118</td>
+      <td>True</td>
+      <td>-4.299702</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>83</td>
+      <td>True</td>
+      <td>-4.569291</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>89</td>
+      <td>True</td>
+      <td>-4.409830</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>65</td>
+      <td>True</td>
+      <td>-4.633946</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>59</td>
+      <td>True</td>
+      <td>-4.627577</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>58</td>
+      <td>True</td>
+      <td>-4.544617</td>
+    </tr>
+    <tr>
+      <th>26</th>
+      <td>53</td>
+      <td>True</td>
+      <td>-4.528494</td>
+    </tr>
+    <tr>
+      <th>27</th>
+      <td>43</td>
+      <td>True</td>
+      <td>-4.624557</td>
+    </tr>
+    <tr>
+      <th>28</th>
+      <td>38</td>
+      <td>True</td>
+      <td>-4.626009</td>
+    </tr>
+    <tr>
+      <th>29</th>
+      <td>43</td>
+      <td>True</td>
+      <td>-4.376003</td>
+    </tr>
+    <tr>
+      <th>30</th>
+      <td>37</td>
+      <td>True</td>
+      <td>-4.384266</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="tuning-regularization-parameters">Tuning Regularization Parameters<a class="headerlink" href="#tuning-regularization-parameters" title="Permanent link">¤</a></h2>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>In penalized regression, one should fit a path of models in each <span class="arithmatex">\(\eta_j\)</span>, <span class="arithmatex">\(j=1,\ldots,M\)</span>. The final set of values of <span class="arithmatex">\(\eta_1,\ldots,\eta_M\)</span> corresponds to the values yielding the best results in terms of  pre-specified criteria, such as maximizing <span class="arithmatex">\(\widehat{\mbox{AUC}}_j\)</span> and  <span class="arithmatex">\(\widehat{\mbox{AUC}}\)</span>, or minimizing <span class="arithmatex">\(\widehat{\mbox{BS}}_j\)</span> and <span class="arithmatex">\(\widehat{\mbox{BS}}\)</span>. The default criteria in PyDTS is maximizing the global AUC, <span class="arithmatex">\(\widehat{\mbox{AUC}}\)</span>. Two <span class="arithmatex">\(M\)</span>-dimensional grid search options are implemented, PenaltyGridSearch when the user provides train and test datasets, and PenaltyGridSearchCV for applying a K-fold cross validation (CV) approach. </p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="penaltygridsearch">PenaltyGridSearch<a class="headerlink" href="#penaltygridsearch" title="Permanent link">¤</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>When train and test sets are available, by excecuting the following code, all the four optimization criteria are calculated over the <span class="arithmatex">\(M\)</span>-dimensional grid and optimal_set includes the optimal values of <span class="arithmatex">\(\eta_1,\ldots,\eta_M\)</span> based on <span class="arithmatex">\(\widehat{\mbox{AUC}}\)</span>. Here, the optimal set based on <span class="arithmatex">\(\widehat{\mbox{AUC}}\)</span> is <span class="arithmatex">\(\log\eta_1 = -6\)</span> and <span class="arithmatex">\(\log\eta_2 = -6\)</span>.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>It is noted, that we estimate the parameters of each <span class="arithmatex">\(\eta_j\)</span> once. However, since our performance measures requires the evaluation of the overall survival function, we must check each possible combination of <span class="arithmatex">\(\eta_j\)</span> seperately. This can be time consuming, especially when we would like to choose between a large number of possible penalizers.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">from</span> <span class="nn">pydts.model_selection</span> <span class="kn">import</span> <span class="n">PenaltyGridSearch</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="n">penalizers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">])</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="n">grid_search</span> <span class="o">=</span> <span class="n">PenaltyGridSearch</span><span class="p">()</span>
+<a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="n">optimal_set</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">evaluate</span><span class="p">(</span><span class="n">train_df</span><span class="p">,</span> <span class="n">test_df</span><span class="p">,</span> <span class="n">l1_ratio</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> 
+<a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>                                   <span class="n">penalizers</span> <span class="o">=</span> <span class="n">penalizers</span><span class="p">,</span>
+<a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>                                   <span class="n">metrics</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;IBS&#39;</span><span class="p">,</span> <span class="s1">&#39;GBS&#39;</span><span class="p">,</span> <span class="s1">&#39;IAUC&#39;</span><span class="p">,</span> <span class="s1">&#39;GAUC&#39;</span><span class="p">])</span>
+<a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>
+<a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="nb">print</span><span class="p">(</span><span class="n">optimal_set</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>Started estimating the coefficients for penalizer 0.1353352832366127 (1/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.1353352832366127 (1/5), 199 seconds
+Started estimating the coefficients for penalizer 0.049787068367863944 (2/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.049787068367863944 (2/5), 204 seconds
+Started estimating the coefficients for penalizer 0.01831563888873418 (3/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.01831563888873418 (3/5), 206 seconds
+Started estimating the coefficients for penalizer 0.006737946999085467 (4/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.006737946999085467 (4/5), 207 seconds
+Started estimating the coefficients for penalizer 0.0024787521766663585 (5/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.0024787521766663585 (5/5), 213 seconds
+(0.0024787521766663585, 0.0024787521766663585)
+</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>The user can choose the set of <span class="arithmatex">\(\eta_j\)</span>, <span class="arithmatex">\(j=1,\ldots,M\)</span>, values that optimizes other desired criteria. For example, the set that minimizes <span class="arithmatex">\(\widehat{\mbox{BS}}\)</span> can be selected as follows </p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">res</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">convert_results_dict_to_df</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">global_bs</span><span class="p">)</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">res</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;BS&#39;</span><span class="p">]</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">res</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">set_names</span><span class="p">([</span><span class="s1">&#39;eta_1&#39;</span><span class="p">,</span> <span class="s1">&#39;eta_2&#39;</span><span class="p">],</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">res</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>BS</th>
+    </tr>
+    <tr>
+      <th>eta_1</th>
+      <th>eta_2</th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th rowspan="5" valign="top">0.135335</th>
+      <th>0.135335</th>
+      <td>0.038662</td>
+    </tr>
+    <tr>
+      <th>0.049787</th>
+      <td>0.038662</td>
+    </tr>
+    <tr>
+      <th>0.018316</th>
+      <td>0.038633</td>
+    </tr>
+    <tr>
+      <th>0.006738</th>
+      <td>0.038468</td>
+    </tr>
+    <tr>
+      <th>0.002479</th>
+      <td>0.038137</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">0.049787</th>
+      <th>0.135335</th>
+      <td>0.038430</td>
+    </tr>
+    <tr>
+      <th>0.049787</th>
+      <td>0.038430</td>
+    </tr>
+    <tr>
+      <th>0.018316</th>
+      <td>0.038403</td>
+    </tr>
+    <tr>
+      <th>0.006738</th>
+      <td>0.038245</td>
+    </tr>
+    <tr>
+      <th>0.002479</th>
+      <td>0.037919</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">0.018316</th>
+      <th>0.135335</th>
+      <td>0.035197</td>
+    </tr>
+    <tr>
+      <th>0.049787</th>
+      <td>0.035197</td>
+    </tr>
+    <tr>
+      <th>0.018316</th>
+      <td>0.035199</td>
+    </tr>
+    <tr>
+      <th>0.006738</th>
+      <td>0.035164</td>
+    </tr>
+    <tr>
+      <th>0.002479</th>
+      <td>0.034911</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">0.006738</th>
+      <th>0.135335</th>
+      <td>0.031541</td>
+    </tr>
+    <tr>
+      <th>0.049787</th>
+      <td>0.031541</td>
+    </tr>
+    <tr>
+      <th>0.018316</th>
+      <td>0.031592</td>
+    </tr>
+    <tr>
+      <th>0.006738</th>
+      <td>0.031685</td>
+    </tr>
+    <tr>
+      <th>0.002479</th>
+      <td>0.031431</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">0.002479</th>
+      <th>0.135335</th>
+      <td>0.028503</td>
+    </tr>
+    <tr>
+      <th>0.049787</th>
+      <td>0.028503</td>
+    </tr>
+    <tr>
+      <th>0.018316</th>
+      <td>0.028563</td>
+    </tr>
+    <tr>
+      <th>0.006738</th>
+      <td>0.028698</td>
+    </tr>
+    <tr>
+      <th>0.002479</th>
+      <td>0.028441</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">grid_search</span><span class="o">.</span><span class="n">convert_results_dict_to_df</span><span class="p">(</span><span class="n">grid_search</span><span class="o">.</span><span class="n">global_bs</span><span class="p">)</span><span class="o">.</span><span class="n">idxmin</span><span class="p">()</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>
+<code>0    (0.0024787521766663585, 0.0024787521766663585)
+dtype: object</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>the final model can be retrieved by</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">optimal_two_stages_fitter</span> <span class="o">=</span> <span class="n">grid_search</span><span class="o">.</span><span class="n">get_mixed_two_stages_fitter</span><span class="p">(</span><span class="n">optimal_set</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="penaltygridsearchcv">PenaltyGridSearchCV<a class="headerlink" href="#penaltygridsearchcv" title="Permanent link">¤</a></h3>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Alternatively, 5-fold CV is performed by</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">from</span> <span class="nn">pydts.cross_validation</span> <span class="kn">import</span> <span class="n">PenaltyGridSearchCV</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">penalizers</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">([</span><span class="o">-</span><span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">3</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="o">-</span><span class="mi">5</span><span class="p">,</span> <span class="o">-</span><span class="mi">6</span><span class="p">])</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">grid_search_cv</span> <span class="o">=</span> <span class="n">PenaltyGridSearchCV</span><span class="p">()</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">results_df</span> <span class="o">=</span> <span class="n">grid_search_cv</span><span class="o">.</span><span class="n">cross_validate</span><span class="p">(</span><span class="n">patients_df</span><span class="p">,</span> <span class="n">l1_ratio</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> 
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>                                           <span class="n">penalizers</span><span class="o">=</span><span class="n">penalizers</span><span class="p">,</span> <span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> 
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>                                           <span class="n">metrics</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;IBS&#39;</span><span class="p">,</span> <span class="s1">&#39;GBS&#39;</span><span class="p">,</span> <span class="s1">&#39;IAUC&#39;</span><span class="p">,</span> <span class="s1">&#39;GAUC&#39;</span><span class="p">])</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>Starting fold 1/5
+Started estimating the coefficients for penalizer 0.1353352832366127 (1/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.1353352832366127 (1/5), 174 seconds
+Started estimating the coefficients for penalizer 0.049787068367863944 (2/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.049787068367863944 (2/5), 186 seconds
+Started estimating the coefficients for penalizer 0.01831563888873418 (3/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.01831563888873418 (3/5), 200 seconds
+Started estimating the coefficients for penalizer 0.006737946999085467 (4/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.006737946999085467 (4/5), 209 seconds
+Started estimating the coefficients for penalizer 0.0024787521766663585 (5/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.0024787521766663585 (5/5), 155 seconds
+Finished fold 1/5, 1003 seconds
+Starting fold 2/5
+Started estimating the coefficients for penalizer 0.1353352832366127 (1/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.1353352832366127 (1/5), 175 seconds
+Started estimating the coefficients for penalizer 0.049787068367863944 (2/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.049787068367863944 (2/5), 187 seconds
+Started estimating the coefficients for penalizer 0.01831563888873418 (3/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.01831563888873418 (3/5), 200 seconds
+Started estimating the coefficients for penalizer 0.006737946999085467 (4/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.006737946999085467 (4/5), 212 seconds
+Started estimating the coefficients for penalizer 0.0024787521766663585 (5/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.0024787521766663585 (5/5), 178 seconds
+Finished fold 2/5, 1031 seconds
+Starting fold 3/5
+Started estimating the coefficients for penalizer 0.1353352832366127 (1/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.1353352832366127 (1/5), 176 seconds
+Started estimating the coefficients for penalizer 0.049787068367863944 (2/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.049787068367863944 (2/5), 188 seconds
+Started estimating the coefficients for penalizer 0.01831563888873418 (3/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.01831563888873418 (3/5), 200 seconds
+Started estimating the coefficients for penalizer 0.006737946999085467 (4/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.006737946999085467 (4/5), 210 seconds
+Started estimating the coefficients for penalizer 0.0024787521766663585 (5/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.0024787521766663585 (5/5), 186 seconds
+Finished fold 3/5, 1039 seconds
+Starting fold 4/5
+Started estimating the coefficients for penalizer 0.1353352832366127 (1/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.1353352832366127 (1/5), 177 seconds
+Started estimating the coefficients for penalizer 0.049787068367863944 (2/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.049787068367863944 (2/5), 188 seconds
+Started estimating the coefficients for penalizer 0.01831563888873418 (3/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.01831563888873418 (3/5), 202 seconds
+Started estimating the coefficients for penalizer 0.006737946999085467 (4/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.006737946999085467 (4/5), 211 seconds
+Started estimating the coefficients for penalizer 0.0024787521766663585 (5/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.0024787521766663585 (5/5), 179 seconds
+Finished fold 4/5, 1037 seconds
+Starting fold 5/5
+Started estimating the coefficients for penalizer 0.1353352832366127 (1/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.1353352832366127 (1/5), 176 seconds
+Started estimating the coefficients for penalizer 0.049787068367863944 (2/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.049787068367863944 (2/5), 188 seconds
+Started estimating the coefficients for penalizer 0.01831563888873418 (3/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.01831563888873418 (3/5), 201 seconds
+Started estimating the coefficients for penalizer 0.006737946999085467 (4/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.006737946999085467 (4/5), 213 seconds
+Started estimating the coefficients for penalizer 0.0024787521766663585 (5/5)
+INFO: Pandarallel will run on 8 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+Finished estimating the coefficients for penalizer 0.0024787521766663585 (5/5), 182 seconds
+Finished fold 5/5, 1040 seconds
+</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">results_df</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>Mean</th>
+      <th>SE</th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th rowspan="5" valign="top">0.135335</th>
+      <th>0.135335</th>
+      <td>0.638475</td>
+      <td>0.002592</td>
+    </tr>
+    <tr>
+      <th>0.049787</th>
+      <td>0.639094</td>
+      <td>0.003754</td>
+    </tr>
+    <tr>
+      <th>0.018316</th>
+      <td>0.639103</td>
+      <td>0.003627</td>
+    </tr>
+    <tr>
+      <th>0.006738</th>
+      <td>0.637383</td>
+      <td>0.002958</td>
+    </tr>
+    <tr>
+      <th>0.002479</th>
+      <td>0.488831</td>
+      <td>0.003291</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">0.049787</th>
+      <th>0.135335</th>
+      <td>0.638764</td>
+      <td>0.002806</td>
+    </tr>
+    <tr>
+      <th>0.049787</th>
+      <td>0.638899</td>
+      <td>0.003862</td>
+    </tr>
+    <tr>
+      <th>0.018316</th>
+      <td>0.639014</td>
+      <td>0.003780</td>
+    </tr>
+    <tr>
+      <th>0.006738</th>
+      <td>0.637522</td>
+      <td>0.003173</td>
+    </tr>
+    <tr>
+      <th>0.002479</th>
+      <td>0.488832</td>
+      <td>0.003291</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">0.018316</th>
+      <th>0.135335</th>
+      <td>0.638666</td>
+      <td>0.002676</td>
+    </tr>
+    <tr>
+      <th>0.049787</th>
+      <td>0.638953</td>
+      <td>0.003742</td>
+    </tr>
+    <tr>
+      <th>0.018316</th>
+      <td>0.639031</td>
+      <td>0.003669</td>
+    </tr>
+    <tr>
+      <th>0.006738</th>
+      <td>0.637576</td>
+      <td>0.003055</td>
+    </tr>
+    <tr>
+      <th>0.002479</th>
+      <td>0.488833</td>
+      <td>0.003298</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">0.006738</th>
+      <th>0.135335</th>
+      <td>0.563873</td>
+      <td>0.001147</td>
+    </tr>
+    <tr>
+      <th>0.049787</th>
+      <td>0.563873</td>
+      <td>0.001147</td>
+    </tr>
+    <tr>
+      <th>0.018316</th>
+      <td>0.563872</td>
+      <td>0.001150</td>
+    </tr>
+    <tr>
+      <th>0.006738</th>
+      <td>0.563827</td>
+      <td>0.001226</td>
+    </tr>
+    <tr>
+      <th>0.002479</th>
+      <td>0.615068</td>
+      <td>0.002719</td>
+    </tr>
+    <tr>
+      <th rowspan="5" valign="top">0.002479</th>
+      <th>0.135335</th>
+      <td>0.568879</td>
+      <td>0.001269</td>
+    </tr>
+    <tr>
+      <th>0.049787</th>
+      <td>0.568879</td>
+      <td>0.001269</td>
+    </tr>
+    <tr>
+      <th>0.018316</th>
+      <td>0.568879</td>
+      <td>0.001268</td>
+    </tr>
+    <tr>
+      <th>0.006738</th>
+      <td>0.568834</td>
+      <td>0.001290</td>
+    </tr>
+    <tr>
+      <th>0.002479</th>
+      <td>0.630541</td>
+      <td>0.004160</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">optimal_set</span> <span class="o">=</span> <span class="n">results_df</span><span class="p">[</span><span class="s1">&#39;Mean&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">()</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">optimal_set</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_text output_subarea output_execute_result">
+<pre>
+<code>(0.1353352832366127, 0.01831563888873418)</code>
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">¤</a></h2>
+<p>[1] Meir, Tomer*, Gutman, Rom*, and Gorfine, Malka, "PyDTS: A Python Package for Discrete-Time Survival Analysis with Competing Risks" (2022)</p>
+</div>
+</div>
+</div>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../PerformanceMeasures/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Evaluation" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Evaluation
+            </div>
+          </div>
+        </a>
+      
+      
+        
+        <a href="../SimulatedDataset/" class="md-footer__link md-footer__link--next" aria-label="Next: Hospitalization LOS Simulation" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Hospitalization LOS Simulation
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "toc.integrate", "header.autohide"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+    
+  </body>
+</html>

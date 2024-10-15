@@ -1,0 +1,3232 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="The documentation for the PyDTS software library.">
+      
+      
+        <meta name="author" content="Tomer Meir, Rom Gutman">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.4.3, mkdocs-material-8.5.10">
+    
+    
+      
+        <title>User Story - PyDTS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.975780f9.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.2505c338.min.css">
+        
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../css/ansi-colours.css">
+    
+      <link rel="stylesheet" href="../css/jupyter-cells.css">
+    
+      <link rel="stylesheet" href="../css/pandas-dataframe.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+  
+
+
+  
+  
+
+
+  <script id="__analytics">function __md_analytics(){function n(){dataLayer.push(arguments)}window.dataLayer=window.dataLayer||[],n("js",new Date),n("config","G-Z0XYP3868P"),document.addEventListener("DOMContentLoaded",function(){document.forms.search&&document.forms.search.query.addEventListener("blur",function(){this.value&&n("event","search",{search_term:this.value})}),document$.subscribe(function(){var a=document.forms.feedback;if(void 0!==a)for(var e of a.querySelectorAll("[type=submit]"))e.addEventListener("click",function(e){e.preventDefault();var t=document.location.pathname,e=this.getAttribute("data-md-value");n("event","feedback",{page:t,data:e}),a.firstElementChild.disabled=!0;e=a.querySelector(".md-feedback__note [data-md-value='"+e+"']");e&&(e.hidden=!1)}),a.hidden=!1}),location$.subscribe(function(e){n("config","G-Z0XYP3868P",{page_path:e.pathname})})});var e=document.createElement("script");e.async=!0,e.src="https://www.googletagmanager.com/gtag/js?id=G-Z0XYP3868P",document.getElementById("__analytics").insertAdjacentElement("afterEnd",e)}</script>
+
+  
+    <script>"undefined"!=typeof __md_analytics&&__md_analytics()</script>
+  
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="None" data-md-color-accent="None">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#guide-for-dealing-with-problem-definition" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="PyDTS" class="md-header__button md-logo" aria-label="PyDTS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PyDTS
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              User Story
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/tomer1812/pydts/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tomer1812/pydts
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="PyDTS" class="md-nav__button md-logo" aria-label="PyDTS" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    PyDTS
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/tomer1812/pydts/" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    tomer1812/pydts
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_3" type="checkbox" id="__nav_3" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3">
+          Methods
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Methods" data-md-level="1">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          Methods
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methodsintro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methods/" class="md-nav__link">
+        Definitions and Estimation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../methodsevaluation/" class="md-nav__link">
+        Evaluation Metrics
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4" type="checkbox" id="__nav_4" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4">
+          Examples
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Examples" data-md-level="1">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          Examples
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../EventTimesSampler/" class="md-nav__link">
+        Event Times Sampler
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4_2">
+          Estimation Example
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="Estimation Example" data-md-level="2">
+        <label class="md-nav__title" for="__nav_4_2">
+          <span class="md-nav__icon md-icon"></span>
+          Estimation Example
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UsageExample-Intro/" class="md-nav__link">
+        Introduction
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UsageExample-DataPreparation/" class="md-nav__link">
+        Data Preparation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UsageExample-FittingTwoStagesFitter/" class="md-nav__link">
+        Estimation with TwoStagesFitter
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UsageExample-FittingDataExpansionFitter/" class="md-nav__link">
+        Estimation with DataExpansionFitter
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../UsageExample-RegroupingData/" class="md-nav__link">
+        Data Regrouping Example
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ModelsComparison/" class="md-nav__link">
+        Comparing the Estimation Methods
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../PerformanceMeasures/" class="md-nav__link">
+        Evaluation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Regularization/" class="md-nav__link">
+        Regularization
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../SimulatedDataset/" class="md-nav__link">
+        Hospitalization LOS Simulation
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+      
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+      
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_5" type="checkbox" id="__nav_5" >
+      
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5">
+          API
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" aria-label="API" data-md-level="1">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          API
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/two_stages_fitter/" class="md-nav__link">
+        The Two Stages Procedure of Meir and Gorfine (2023) - Efron
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/two_stages_fitter_exact/" class="md-nav__link">
+        The Two Stages Procedure of Meir and Gorfine (2023) - Exact
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/data_expansion_fitter/" class="md-nav__link">
+        Data Expansion Procedure of Lee et al. (2018)
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/event_times_sampler/" class="md-nav__link">
+        Event Times Sampler
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/evaluation/" class="md-nav__link">
+        Evaluation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/cross_validation/" class="md-nav__link">
+        Cross Validation
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../api/model_selection/" class="md-nav__link">
+        Model Selection
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+<script>
+(function() {
+  function addWidgetsRenderer() {
+    var requireJsScript = document.createElement('script');
+    requireJsScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js';
+
+    var mimeElement = document.querySelector('script[type="application/vnd.jupyter.widget-view+json"]');
+    var jupyterWidgetsScript = document.createElement('script');
+    var widgetRendererSrc = 'https://unpkg.com/@jupyter-widgets/html-manager@*/dist/embed-amd.js';
+    var widgetState;
+
+    // Fallback for older version:
+    try {
+      widgetState = mimeElement && JSON.parse(mimeElement.innerHTML);
+
+      if (widgetState && (widgetState.version_major < 2 || !widgetState.version_major)) {
+        widgetRendererSrc = 'jupyter-js-widgets@*/dist/embed.js';
+      }
+    } catch(e) {}
+
+    jupyterWidgetsScript.src = widgetRendererSrc;
+
+    document.body.appendChild(requireJsScript);
+    document.body.appendChild(jupyterWidgetsScript);
+  }
+
+  document.addEventListener('DOMContentLoaded', addWidgetsRenderer);
+}());
+</script>
+
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="guide-for-dealing-with-problem-definition">Guide for dealing with problem definition<a class="headerlink" href="#guide-for-dealing-with-problem-definition" title="Permanent link">¤</a></h1>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">warnings</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">sys</span> 
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="kn">from</span> <span class="nn">pydts.examples_utils.generate_simulations_data</span> <span class="kn">import</span> <span class="n">generate_quick_start_df</span>
+<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="kn">from</span> <span class="nn">pydts.fitters</span> <span class="kn">import</span> <span class="n">TwoStagesFitter</span>
+<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_rows&quot;</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span>
+<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">pd</span><span class="o">.</span><span class="n">set_option</span><span class="p">(</span><span class="s2">&quot;display.max_columns&quot;</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">)</span>
+<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+</code></pre></div>
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="case-study-1-not-enough-cases-in-the-tail">Case study #1: Not enough cases in the tail<a class="headerlink" href="#case-study-1-not-enough-cases-in-the-tail" title="Permanent link">¤</a></h2>
+<p><b>For the first example we would consider settings in which the cases are becoming less frequent in the tail end of the data </b></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">df</span> <span class="o">=</span> <span class="n">generate_quick_start_df</span><span class="p">(</span><span class="n">n_patients</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span> <span class="n">n_cov</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">d_times</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">j_events</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">pid_col</span><span class="o">=</span><span class="s1">&#39;pid&#39;</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;J&#39;</span><span class="p">])[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr>
+      <th></th>
+      <th colspan="25" halign="left">X</th>
+    </tr>
+    <tr>
+      <th>X</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>...</th>
+      <th>19</th>
+      <th>20</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+      <th>26</th>
+      <th>27</th>
+      <th>28</th>
+      <th>29</th>
+      <th>30</th>
+    </tr>
+    <tr>
+      <th>J</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th>0</th>
+      <td>24.0</td>
+      <td>25.0</td>
+      <td>25.0</td>
+      <td>24.0</td>
+      <td>19.0</td>
+      <td>19.0</td>
+      <td>22.0</td>
+      <td>17.0</td>
+      <td>23.0</td>
+      <td>20.0</td>
+      <td>15.0</td>
+      <td>16.0</td>
+      <td>...</td>
+      <td>16.0</td>
+      <td>13.0</td>
+      <td>20.0</td>
+      <td>13.0</td>
+      <td>14.0</td>
+      <td>14.0</td>
+      <td>12.0</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>11.0</td>
+      <td>6.0</td>
+      <td>9.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>74.0</td>
+      <td>41.0</td>
+      <td>36.0</td>
+      <td>33.0</td>
+      <td>21.0</td>
+      <td>25.0</td>
+      <td>20.0</td>
+      <td>13.0</td>
+      <td>11.0</td>
+      <td>13.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>...</td>
+      <td>2.0</td>
+      <td>4.0</td>
+      <td>2.0</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>29.0</td>
+      <td>11.0</td>
+      <td>19.0</td>
+      <td>15.0</td>
+      <td>17.0</td>
+      <td>4.0</td>
+      <td>7.0</td>
+      <td>6.0</td>
+      <td>8.0</td>
+      <td>7.0</td>
+      <td>11.0</td>
+      <td>3.0</td>
+      <td>...</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>NaN</td>
+      <td>1.0</td>
+    </tr>
+  </tbody>
+</table>
+<p>3 rows × 30 columns</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">m2</span> <span class="o">=</span> <span class="n">TwoStagesFitter</span><span class="p">()</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="k">try</span><span class="p">:</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    <span class="n">m2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]),</span><span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">RuntimeError</span>                              Traceback (most recent call last)
+Input <span class="ansi-green-fg">In [3]</span>, in <span class="ansi-cyan-fg">&lt;cell line: 2&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     m2<span style="color: rgb(98,98,98)">.</span>fit(df<span style="color: rgb(98,98,98)">.</span>drop(columns<span style="color: rgb(98,98,98)">=</span>[<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">C</span><span style="color: rgb(175,0,0)">&#39;</span>, <span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">T</span><span style="color: rgb(175,0,0)">&#39;</span>]),verbose<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">0</span>)
+<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> <span class="ansi-bold" style="color: rgb(215,95,95)">RuntimeError</span> <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> e:
+<span class="ansi-green-fg">----&gt; 5</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> e<span style="color: rgb(98,98,98)">.</span>with_traceback(<span class="ansi-bold" style="color: rgb(0,135,0)">None</span>)
+
+<span class="ansi-red-fg">RuntimeError</span>: In event J=1, The method didn&#39;t have events D=[29]. Consider changing the problem definition. 
+ See TBD for more details.</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><b> In this case we see that the method doesn't have events for D=29. let's see the distrubtion: </b></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">axes</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;J&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">():</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">30</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>As one can easily see from the data, We don't have events during the 25-30 days. \
+for example - we can think about a patients length of stay in hospital - patints are more likely to stay in hospital or to leave hospital soon after hospitalization, but only few are leaving after it.\
+To tackle this challenge, we can induce adminstrative censorship, such that patients that had event (either <span class="arithmatex">\(J=1\)</span> or <span class="arithmatex">\(J=2\)</span>) after the 25th day (25+), is considered to be similar to patient that had event in the 25th day.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">temp_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1"># so we don&#39;t change the original data</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">temp_df</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">upper</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span> <span class="p">)</span> <span class="c1"># we are clipping all the patients over 25 days to 25</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">m2</span> <span class="o">=</span> <span class="n">TwoStagesFitter</span><span class="p">()</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="n">m2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">temp_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]))</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">m2</span><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>INFO: Pandarallel will run on 4 workers.
+INFO: Pandarallel will use standard multiprocessing data transfer (pipe) to transfer data between the main process and workers.
+
+
+Model summary for event: 1
+</code>
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<tbody>
+    <tr>
+      <th>model</th>
+      <td>lifelines.CoxPHFitter</td>
+    </tr>
+    <tr>
+      <th>duration col</th>
+      <td>'X'</td>
+    </tr>
+    <tr>
+      <th>event col</th>
+      <td>'j_1'</td>
+    </tr>
+    <tr>
+      <th>strata</th>
+      <td>X_copy</td>
+    </tr>
+    <tr>
+      <th>baseline estimation</th>
+      <td>breslow</td>
+    </tr>
+    <tr>
+      <th>number of observations</th>
+      <td>9560</td>
+    </tr>
+    <tr>
+      <th>number of events observed</th>
+      <td>375</td>
+    </tr>
+    <tr>
+      <th>partial log-likelihood</th>
+      <td>-2313.33</td>
+    </tr>
+    <tr>
+      <th>time fit was run</th>
+      <td>2022-03-22 16:13:49 UTC</td>
+    </tr>
+  </tbody>
+</table>
+</div><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th style="min-width: 12px;"></th>
+      <th style="min-width: 12px;">coef</th>
+      <th style="min-width: 12px;">exp(coef)</th>
+      <th style="min-width: 12px;">se(coef)</th>
+      <th style="min-width: 12px;">coef lower 95%</th>
+      <th style="min-width: 12px;">coef upper 95%</th>
+      <th style="min-width: 12px;">exp(coef) lower 95%</th>
+      <th style="min-width: 12px;">exp(coef) upper 95%</th>
+      <th style="min-width: 12px;">z</th>
+      <th style="min-width: 12px;">p</th>
+      <th style="min-width: 12px;">-log2(p)</th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th>Z1</th>
+      <td>0.09</td>
+      <td>1.09</td>
+      <td>0.18</td>
+      <td>-0.26</td>
+      <td>0.44</td>
+      <td>0.77</td>
+      <td>1.56</td>
+      <td>0.50</td>
+      <td>0.62</td>
+      <td>0.70</td>
+    </tr>
+    <tr>
+      <th>Z2</th>
+      <td>-1.04</td>
+      <td>0.35</td>
+      <td>0.18</td>
+      <td>-1.41</td>
+      <td>-0.68</td>
+      <td>0.24</td>
+      <td>0.51</td>
+      <td>-5.65</td>
+      <td>&lt;0.005</td>
+      <td>25.93</td>
+    </tr>
+    <tr>
+      <th>Z3</th>
+      <td>-1.07</td>
+      <td>0.34</td>
+      <td>0.19</td>
+      <td>-1.44</td>
+      <td>-0.71</td>
+      <td>0.24</td>
+      <td>0.49</td>
+      <td>-5.81</td>
+      <td>&lt;0.005</td>
+      <td>27.26</td>
+    </tr>
+    <tr>
+      <th>Z4</th>
+      <td>-0.53</td>
+      <td>0.59</td>
+      <td>0.17</td>
+      <td>-0.88</td>
+      <td>-0.19</td>
+      <td>0.42</td>
+      <td>0.82</td>
+      <td>-3.08</td>
+      <td>&lt;0.005</td>
+      <td>8.91</td>
+    </tr>
+    <tr>
+      <th>Z5</th>
+      <td>-0.52</td>
+      <td>0.59</td>
+      <td>0.18</td>
+      <td>-0.87</td>
+      <td>-0.18</td>
+      <td>0.42</td>
+      <td>0.84</td>
+      <td>-2.98</td>
+      <td>&lt;0.005</td>
+      <td>8.46</td>
+    </tr>
+  </tbody>
+</table><br><div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<tbody>
+    <tr>
+      <th>Concordance</th>
+      <td>0.63</td>
+    </tr>
+    <tr>
+      <th>Partial AIC</th>
+      <td>4636.66</td>
+    </tr>
+    <tr>
+      <th>log-likelihood ratio test</th>
+      <td>81.75 on 5 df</td>
+    </tr>
+    <tr>
+      <th>-log2(p) of ll-ratio test</th>
+      <td>51.30</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>n_jt</th>
+      <th>success</th>
+      <th>alpha_jt</th>
+    </tr>
+    <tr>
+      <th>J</th>
+      <th>X</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th rowspan="25" valign="top">1</th>
+      <th>1</th>
+      <td>74</td>
+      <td>True</td>
+      <td>-1.095820</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>41</td>
+      <td>True</td>
+      <td>-1.564119</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>36</td>
+      <td>True</td>
+      <td>-1.580492</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>33</td>
+      <td>True</td>
+      <td>-1.542081</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>21</td>
+      <td>True</td>
+      <td>-1.896471</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>25</td>
+      <td>True</td>
+      <td>-1.598934</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>20</td>
+      <td>True</td>
+      <td>-1.737360</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>13</td>
+      <td>True</td>
+      <td>-2.066961</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>11</td>
+      <td>True</td>
+      <td>-2.135509</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>13</td>
+      <td>True</td>
+      <td>-1.859094</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>10</td>
+      <td>True</td>
+      <td>-2.002466</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>10</td>
+      <td>True</td>
+      <td>-1.879609</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>5</td>
+      <td>True</td>
+      <td>-2.486454</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>12</td>
+      <td>True</td>
+      <td>-1.501572</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>9</td>
+      <td>True</td>
+      <td>-1.703977</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>7</td>
+      <td>True</td>
+      <td>-1.856787</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>5</td>
+      <td>True</td>
+      <td>-2.067510</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>3</td>
+      <td>True</td>
+      <td>-2.482490</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2</td>
+      <td>True</td>
+      <td>-2.806679</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>4</td>
+      <td>True</td>
+      <td>-1.998939</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>2</td>
+      <td>True</td>
+      <td>-2.568323</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>5</td>
+      <td>True</td>
+      <td>-1.487019</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-2.914662</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>6</td>
+      <td>True</td>
+      <td>-0.859760</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>7</td>
+      <td>True</td>
+      <td>-0.335299</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>
+
+Model summary for event: 2
+</code>
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<tbody>
+    <tr>
+      <th>model</th>
+      <td>lifelines.CoxPHFitter</td>
+    </tr>
+    <tr>
+      <th>duration col</th>
+      <td>'X'</td>
+    </tr>
+    <tr>
+      <th>event col</th>
+      <td>'j_2'</td>
+    </tr>
+    <tr>
+      <th>strata</th>
+      <td>X_copy</td>
+    </tr>
+    <tr>
+      <th>baseline estimation</th>
+      <td>breslow</td>
+    </tr>
+    <tr>
+      <th>number of observations</th>
+      <td>9560</td>
+    </tr>
+    <tr>
+      <th>number of events observed</th>
+      <td>161</td>
+    </tr>
+    <tr>
+      <th>partial log-likelihood</th>
+      <td>-987.17</td>
+    </tr>
+    <tr>
+      <th>time fit was run</th>
+      <td>2022-03-22 16:13:50 UTC</td>
+    </tr>
+  </tbody>
+</table>
+</div><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th style="min-width: 12px;"></th>
+      <th style="min-width: 12px;">coef</th>
+      <th style="min-width: 12px;">exp(coef)</th>
+      <th style="min-width: 12px;">se(coef)</th>
+      <th style="min-width: 12px;">coef lower 95%</th>
+      <th style="min-width: 12px;">coef upper 95%</th>
+      <th style="min-width: 12px;">exp(coef) lower 95%</th>
+      <th style="min-width: 12px;">exp(coef) upper 95%</th>
+      <th style="min-width: 12px;">z</th>
+      <th style="min-width: 12px;">p</th>
+      <th style="min-width: 12px;">-log2(p)</th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th>Z1</th>
+      <td>0.17</td>
+      <td>1.18</td>
+      <td>0.27</td>
+      <td>-0.37</td>
+      <td>0.71</td>
+      <td>0.69</td>
+      <td>2.02</td>
+      <td>0.61</td>
+      <td>0.54</td>
+      <td>0.89</td>
+    </tr>
+    <tr>
+      <th>Z2</th>
+      <td>-1.08</td>
+      <td>0.34</td>
+      <td>0.28</td>
+      <td>-1.63</td>
+      <td>-0.53</td>
+      <td>0.20</td>
+      <td>0.59</td>
+      <td>-3.85</td>
+      <td>&lt;0.005</td>
+      <td>13.03</td>
+    </tr>
+    <tr>
+      <th>Z3</th>
+      <td>-1.67</td>
+      <td>0.19</td>
+      <td>0.29</td>
+      <td>-2.24</td>
+      <td>-1.10</td>
+      <td>0.11</td>
+      <td>0.33</td>
+      <td>-5.73</td>
+      <td>&lt;0.005</td>
+      <td>26.59</td>
+    </tr>
+    <tr>
+      <th>Z4</th>
+      <td>-0.67</td>
+      <td>0.51</td>
+      <td>0.27</td>
+      <td>-1.19</td>
+      <td>-0.15</td>
+      <td>0.30</td>
+      <td>0.86</td>
+      <td>-2.53</td>
+      <td>0.01</td>
+      <td>6.46</td>
+    </tr>
+    <tr>
+      <th>Z5</th>
+      <td>-0.38</td>
+      <td>0.69</td>
+      <td>0.27</td>
+      <td>-0.90</td>
+      <td>0.15</td>
+      <td>0.41</td>
+      <td>1.16</td>
+      <td>-1.41</td>
+      <td>0.16</td>
+      <td>2.66</td>
+    </tr>
+  </tbody>
+</table><br><div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<tbody>
+    <tr>
+      <th>Concordance</th>
+      <td>0.66</td>
+    </tr>
+    <tr>
+      <th>Partial AIC</th>
+      <td>1984.33</td>
+    </tr>
+    <tr>
+      <th>log-likelihood ratio test</th>
+      <td>56.08 on 5 df</td>
+    </tr>
+    <tr>
+      <th>-log2(p) of ll-ratio test</th>
+      <td>33.57</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>n_jt</th>
+      <th>success</th>
+      <th>alpha_jt</th>
+    </tr>
+    <tr>
+      <th>J</th>
+      <th>X</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th rowspan="25" valign="top">2</th>
+      <th>1</th>
+      <td>29</td>
+      <td>True</td>
+      <td>-1.889441</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11</td>
+      <td>True</td>
+      <td>-2.713222</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>19</td>
+      <td>True</td>
+      <td>-2.027058</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>15</td>
+      <td>True</td>
+      <td>-2.141383</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>17</td>
+      <td>True</td>
+      <td>-1.889341</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>4</td>
+      <td>True</td>
+      <td>-3.162640</td>
+    </tr>
+    <tr>
+      <th>7</th>
+      <td>7</td>
+      <td>True</td>
+      <td>-2.589820</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>6</td>
+      <td>True</td>
+      <td>-2.631269</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>8</td>
+      <td>True</td>
+      <td>-2.229403</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>7</td>
+      <td>True</td>
+      <td>-2.257762</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>11</td>
+      <td>True</td>
+      <td>-1.664896</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>3</td>
+      <td>True</td>
+      <td>-2.836411</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>5</td>
+      <td>True</td>
+      <td>-2.246092</td>
+    </tr>
+    <tr>
+      <th>14</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-3.607395</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>3</td>
+      <td>True</td>
+      <td>-2.582261</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>4</td>
+      <td>True</td>
+      <td>-2.176043</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-3.368219</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2</td>
+      <td>True</td>
+      <td>-2.626271</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-3.202843</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-3.042474</td>
+    </tr>
+    <tr>
+      <th>21</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-2.958991</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-2.840443</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-2.655788</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-2.408854</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2</td>
+      <td>True</td>
+      <td>-1.382297</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, we can predict the surviavl curves for patients that had events (<span class="arithmatex">\(J\in\{1,2\}\)</span>) in days 1-24 or in day 25 and after.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="case-study-2-not-enough-cases-in-the-middle">Case study #2: Not enough cases in the middle<a class="headerlink" href="#case-study-2-not-enough-cases-in-the-middle" title="Permanent link">¤</a></h2>
+<p>In this example we examine a case where there is no events during the weekend, but only cencoreship.
+This use-case shows possible solution of combining those events into stucks of "weekend".</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="p">(</span><span class="n">temp_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;J&#39;</span><span class="p">])[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">()</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea output_execute_result">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr>
+      <th></th>
+      <th colspan="25" halign="left">X</th>
+    </tr>
+    <tr>
+      <th>X</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+      <th>15</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+    </tr>
+    <tr>
+      <th>J</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th>0</th>
+      <td>24</td>
+      <td>25</td>
+      <td>25</td>
+      <td>24</td>
+      <td>19</td>
+      <td>19</td>
+      <td>22</td>
+      <td>17</td>
+      <td>23</td>
+      <td>20</td>
+      <td>15</td>
+      <td>16</td>
+      <td>14</td>
+      <td>12</td>
+      <td>7</td>
+      <td>16</td>
+      <td>11</td>
+      <td>11</td>
+      <td>16</td>
+      <td>13</td>
+      <td>20</td>
+      <td>13</td>
+      <td>14</td>
+      <td>14</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>74</td>
+      <td>41</td>
+      <td>36</td>
+      <td>33</td>
+      <td>21</td>
+      <td>25</td>
+      <td>20</td>
+      <td>13</td>
+      <td>11</td>
+      <td>13</td>
+      <td>10</td>
+      <td>10</td>
+      <td>5</td>
+      <td>12</td>
+      <td>9</td>
+      <td>7</td>
+      <td>5</td>
+      <td>3</td>
+      <td>2</td>
+      <td>4</td>
+      <td>2</td>
+      <td>5</td>
+      <td>1</td>
+      <td>6</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>29</td>
+      <td>11</td>
+      <td>19</td>
+      <td>15</td>
+      <td>17</td>
+      <td>4</td>
+      <td>7</td>
+      <td>6</td>
+      <td>8</td>
+      <td>7</td>
+      <td>11</td>
+      <td>3</td>
+      <td>5</td>
+      <td>1</td>
+      <td>3</td>
+      <td>4</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span> <span class="nf">map_days</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">21</span><span class="p">]</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;J&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">]:</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        <span class="n">row</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        <span class="n">row</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    <span class="k">return</span> <span class="n">row</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">temp_df</span> <span class="o">=</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">map_days</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="n">temp_df</span><span class="p">[[</span><span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">temp_df</span><span class="p">[[</span><span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><b> As expected in this case, the fitter is falied to converage, because it lacks events in days 7,14,21 ("The weekend") </b></p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">m2</span> <span class="o">=</span> <span class="n">TwoStagesFitter</span><span class="p">()</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">try</span><span class="p">:</span> 
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    <span class="n">m2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">temp_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]),</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="k">except</span> <span class="ne">RuntimeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>    <span class="k">raise</span> <span class="n">e</span><span class="o">.</span><span class="n">with_traceback</span><span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_text output_error">
+<pre>
+<span class="ansi-red-fg">---------------------------------------------------------------------------</span>
+<span class="ansi-red-fg">RuntimeError</span>                              Traceback (most recent call last)
+Input <span class="ansi-green-fg">In [8]</span>, in <span class="ansi-cyan-fg">&lt;cell line: 2&gt;</span><span class="ansi-blue-fg">()</span>
+<span class="ansi-green-intense-fg ansi-bold">      3</span>     m2<span style="color: rgb(98,98,98)">.</span>fit(temp_df<span style="color: rgb(98,98,98)">.</span>drop(columns<span style="color: rgb(98,98,98)">=</span>[<span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">C</span><span style="color: rgb(175,0,0)">&#39;</span>, <span style="color: rgb(175,0,0)">&#39;</span><span style="color: rgb(175,0,0)">T</span><span style="color: rgb(175,0,0)">&#39;</span>]), verbose<span style="color: rgb(98,98,98)">=</span><span style="color: rgb(98,98,98)">0</span>)
+<span class="ansi-green-intense-fg ansi-bold">      4</span> <span class="ansi-bold" style="color: rgb(0,135,0)">except</span> <span class="ansi-bold" style="color: rgb(215,95,95)">RuntimeError</span> <span class="ansi-bold" style="color: rgb(0,135,0)">as</span> e:
+<span class="ansi-green-fg">----&gt; 5</span>     <span class="ansi-bold" style="color: rgb(0,135,0)">raise</span> e<span style="color: rgb(98,98,98)">.</span>with_traceback(<span class="ansi-bold" style="color: rgb(0,135,0)">None</span>)
+
+<span class="ansi-red-fg">RuntimeError</span>: In event J=1, The method didn&#39;t have events D=[7, 14, 21]. Consider changing the problem definition. 
+ See TBD for more details.</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><b> And we get error as expected </b></p>
+<p>Further exploring the disribution, we notice that we have a "hole" during the weekends, so we need do fix this behavior</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">display</span><span class="p">((</span><span class="n">temp_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;J&#39;</span><span class="p">])[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">())</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="n">axes</span> <span class="o">=</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;J&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">():</span>
+<a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr>
+      <th></th>
+      <th colspan="25" halign="left">X</th>
+    </tr>
+    <tr>
+      <th>X</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>7</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>14</th>
+      <th>15</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+      <th>21</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+    </tr>
+    <tr>
+      <th>J</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th>0</th>
+      <td>24.0</td>
+      <td>25.0</td>
+      <td>25.0</td>
+      <td>24.0</td>
+      <td>19.0</td>
+      <td>19.0</td>
+      <td>22.0</td>
+      <td>17.0</td>
+      <td>23.0</td>
+      <td>20.0</td>
+      <td>15.0</td>
+      <td>16.0</td>
+      <td>14.0</td>
+      <td>12.0</td>
+      <td>7.0</td>
+      <td>16.0</td>
+      <td>11.0</td>
+      <td>11.0</td>
+      <td>16.0</td>
+      <td>13.0</td>
+      <td>20.0</td>
+      <td>13.0</td>
+      <td>14.0</td>
+      <td>14.0</td>
+      <td>54.0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>74.0</td>
+      <td>41.0</td>
+      <td>36.0</td>
+      <td>33.0</td>
+      <td>21.0</td>
+      <td>45.0</td>
+      <td>NaN</td>
+      <td>13.0</td>
+      <td>11.0</td>
+      <td>13.0</td>
+      <td>10.0</td>
+      <td>10.0</td>
+      <td>17.0</td>
+      <td>NaN</td>
+      <td>9.0</td>
+      <td>7.0</td>
+      <td>5.0</td>
+      <td>3.0</td>
+      <td>2.0</td>
+      <td>6.0</td>
+      <td>NaN</td>
+      <td>5.0</td>
+      <td>1.0</td>
+      <td>6.0</td>
+      <td>7.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>29.0</td>
+      <td>11.0</td>
+      <td>19.0</td>
+      <td>15.0</td>
+      <td>17.0</td>
+      <td>11.0</td>
+      <td>NaN</td>
+      <td>6.0</td>
+      <td>8.0</td>
+      <td>7.0</td>
+      <td>11.0</td>
+      <td>3.0</td>
+      <td>6.0</td>
+      <td>NaN</td>
+      <td>3.0</td>
+      <td>4.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+      <td>NaN</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>1.0</td>
+      <td>2.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="output_area">
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>One of such fixes can be stacking the events which occurs during the weekend, as one "bucket". </p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">def</span> <span class="nf">map_days_second_try</span><span class="p">(</span><span class="n">row</span><span class="p">):</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>    <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">7</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">21</span><span class="p">]</span> <span class="ow">and</span> <span class="n">row</span><span class="p">[</span><span class="s1">&#39;J&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>        <span class="n">row</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span> <span class="o">-=</span> <span class="mi">1</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        <span class="n">row</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">int</span><span class="p">)</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>    <span class="k">return</span> <span class="n">row</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">temp_df</span> <span class="o">=</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="n">map_days_second_try</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="n">temp_df</span><span class="p">[[</span><span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">temp_df</span><span class="p">[[</span><span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">,</span> <span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;X&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;int64&#39;</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="n">display</span><span class="p">((</span><span class="n">temp_df</span><span class="o">.</span><span class="n">groupby</span><span class="p">([</span><span class="s1">&#39;J&#39;</span><span class="p">])[</span><span class="s1">&#39;X&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span><span class="o">.</span><span class="n">to_frame</span><span class="p">()</span><span class="o">.</span><span class="n">unstack</span><span class="p">())</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">axes</span> <span class="o">=</span> <span class="n">temp_df</span><span class="o">.</span><span class="n">hist</span><span class="p">(</span><span class="n">column</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;X&#39;</span><span class="p">],</span> <span class="n">by</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;J&#39;</span><span class="p">],</span> <span class="n">bins</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="k">for</span> <span class="n">ax</span> <span class="ow">in</span> <span class="n">axes</span><span class="o">.</span><span class="n">flatten</span><span class="p">():</span>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr>
+      <th></th>
+      <th colspan="22" halign="left">X</th>
+    </tr>
+    <tr>
+      <th>X</th>
+      <th>1</th>
+      <th>2</th>
+      <th>3</th>
+      <th>4</th>
+      <th>5</th>
+      <th>6</th>
+      <th>8</th>
+      <th>9</th>
+      <th>10</th>
+      <th>11</th>
+      <th>12</th>
+      <th>13</th>
+      <th>15</th>
+      <th>16</th>
+      <th>17</th>
+      <th>18</th>
+      <th>19</th>
+      <th>20</th>
+      <th>22</th>
+      <th>23</th>
+      <th>24</th>
+      <th>25</th>
+    </tr>
+    <tr>
+      <th>J</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th>0</th>
+      <td>24</td>
+      <td>25</td>
+      <td>25</td>
+      <td>24</td>
+      <td>19</td>
+      <td>41</td>
+      <td>17</td>
+      <td>23</td>
+      <td>20</td>
+      <td>15</td>
+      <td>16</td>
+      <td>26</td>
+      <td>7</td>
+      <td>16</td>
+      <td>11</td>
+      <td>11</td>
+      <td>16</td>
+      <td>33</td>
+      <td>13</td>
+      <td>14</td>
+      <td>14</td>
+      <td>54</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>74</td>
+      <td>41</td>
+      <td>36</td>
+      <td>33</td>
+      <td>21</td>
+      <td>45</td>
+      <td>13</td>
+      <td>11</td>
+      <td>13</td>
+      <td>10</td>
+      <td>10</td>
+      <td>17</td>
+      <td>9</td>
+      <td>7</td>
+      <td>5</td>
+      <td>3</td>
+      <td>2</td>
+      <td>6</td>
+      <td>5</td>
+      <td>1</td>
+      <td>6</td>
+      <td>7</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>29</td>
+      <td>11</td>
+      <td>19</td>
+      <td>15</td>
+      <td>17</td>
+      <td>11</td>
+      <td>6</td>
+      <td>8</td>
+      <td>7</td>
+      <td>11</td>
+      <td>3</td>
+      <td>6</td>
+      <td>3</td>
+      <td>4</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>2</td>
+      <td>1</td>
+      <td>1</td>
+      <td>1</td>
+      <td>2</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="output_area">
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered">
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Now, we can our fit would work as planned, and the model provides <span class="arithmatex">\(\alpha\)</span> only for the times we provided. \
+Thus, we should note our model can't predict during those days.</p>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">m2</span> <span class="o">=</span> <span class="n">TwoStagesFitter</span><span class="p">()</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">m2</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">temp_df</span><span class="o">.</span><span class="n">drop</span><span class="p">(</span><span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;C&#39;</span><span class="p">,</span> <span class="s1">&#39;T&#39;</span><span class="p">]),</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="n">m2</span><span class="o">.</span><span class="n">print_summary</span><span class="p">()</span>
+</code></pre></div>
+
+</div>
+<div class="output_wrapper">
+<div class="output">
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>
+
+Model summary for event: 1
+</code>
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<tbody>
+    <tr>
+      <th>model</th>
+      <td>lifelines.CoxPHFitter</td>
+    </tr>
+    <tr>
+      <th>duration col</th>
+      <td>'X'</td>
+    </tr>
+    <tr>
+      <th>event col</th>
+      <td>'j_1'</td>
+    </tr>
+    <tr>
+      <th>strata</th>
+      <td>X_copy</td>
+    </tr>
+    <tr>
+      <th>baseline estimation</th>
+      <td>breslow</td>
+    </tr>
+    <tr>
+      <th>number of observations</th>
+      <td>9463</td>
+    </tr>
+    <tr>
+      <th>number of events observed</th>
+      <td>375</td>
+    </tr>
+    <tr>
+      <th>partial log-likelihood</th>
+      <td>-2315.15</td>
+    </tr>
+    <tr>
+      <th>time fit was run</th>
+      <td>2022-03-22 16:14:19 UTC</td>
+    </tr>
+  </tbody>
+</table>
+</div><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th style="min-width: 12px;"></th>
+      <th style="min-width: 12px;">coef</th>
+      <th style="min-width: 12px;">exp(coef)</th>
+      <th style="min-width: 12px;">se(coef)</th>
+      <th style="min-width: 12px;">coef lower 95%</th>
+      <th style="min-width: 12px;">coef upper 95%</th>
+      <th style="min-width: 12px;">exp(coef) lower 95%</th>
+      <th style="min-width: 12px;">exp(coef) upper 95%</th>
+      <th style="min-width: 12px;">z</th>
+      <th style="min-width: 12px;">p</th>
+      <th style="min-width: 12px;">-log2(p)</th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th>Z1</th>
+      <td>0.09</td>
+      <td>1.09</td>
+      <td>0.18</td>
+      <td>-0.27</td>
+      <td>0.44</td>
+      <td>0.76</td>
+      <td>1.55</td>
+      <td>0.48</td>
+      <td>0.63</td>
+      <td>0.66</td>
+    </tr>
+    <tr>
+      <th>Z2</th>
+      <td>-1.04</td>
+      <td>0.35</td>
+      <td>0.18</td>
+      <td>-1.41</td>
+      <td>-0.68</td>
+      <td>0.25</td>
+      <td>0.51</td>
+      <td>-5.65</td>
+      <td>&lt;0.005</td>
+      <td>25.87</td>
+    </tr>
+    <tr>
+      <th>Z3</th>
+      <td>-1.08</td>
+      <td>0.34</td>
+      <td>0.18</td>
+      <td>-1.44</td>
+      <td>-0.72</td>
+      <td>0.24</td>
+      <td>0.49</td>
+      <td>-5.84</td>
+      <td>&lt;0.005</td>
+      <td>27.49</td>
+    </tr>
+    <tr>
+      <th>Z4</th>
+      <td>-0.53</td>
+      <td>0.59</td>
+      <td>0.17</td>
+      <td>-0.87</td>
+      <td>-0.19</td>
+      <td>0.42</td>
+      <td>0.83</td>
+      <td>-3.06</td>
+      <td>&lt;0.005</td>
+      <td>8.82</td>
+    </tr>
+    <tr>
+      <th>Z5</th>
+      <td>-0.52</td>
+      <td>0.59</td>
+      <td>0.18</td>
+      <td>-0.86</td>
+      <td>-0.18</td>
+      <td>0.42</td>
+      <td>0.84</td>
+      <td>-2.96</td>
+      <td>&lt;0.005</td>
+      <td>8.37</td>
+    </tr>
+  </tbody>
+</table><br><div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<tbody>
+    <tr>
+      <th>Concordance</th>
+      <td>0.63</td>
+    </tr>
+    <tr>
+      <th>Partial AIC</th>
+      <td>4640.29</td>
+    </tr>
+    <tr>
+      <th>log-likelihood ratio test</th>
+      <td>81.78 on 5 df</td>
+    </tr>
+    <tr>
+      <th>-log2(p) of ll-ratio test</th>
+      <td>51.32</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>n_jt</th>
+      <th>success</th>
+      <th>alpha_jt</th>
+    </tr>
+    <tr>
+      <th>J</th>
+      <th>X</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th rowspan="22" valign="top">1</th>
+      <th>1</th>
+      <td>74</td>
+      <td>True</td>
+      <td>-1.095262</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>41</td>
+      <td>True</td>
+      <td>-1.563535</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>36</td>
+      <td>True</td>
+      <td>-1.579912</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>33</td>
+      <td>True</td>
+      <td>-1.541470</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>21</td>
+      <td>True</td>
+      <td>-1.895841</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>45</td>
+      <td>True</td>
+      <td>-0.967645</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>13</td>
+      <td>True</td>
+      <td>-2.066400</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>11</td>
+      <td>True</td>
+      <td>-2.134931</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>13</td>
+      <td>True</td>
+      <td>-1.858564</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>10</td>
+      <td>True</td>
+      <td>-2.001975</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>10</td>
+      <td>True</td>
+      <td>-1.879093</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>17</td>
+      <td>True</td>
+      <td>-1.223394</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>9</td>
+      <td>True</td>
+      <td>-1.703488</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>7</td>
+      <td>True</td>
+      <td>-1.856321</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>5</td>
+      <td>True</td>
+      <td>-2.067005</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>3</td>
+      <td>True</td>
+      <td>-2.481967</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>2</td>
+      <td>True</td>
+      <td>-2.806130</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>6</td>
+      <td>True</td>
+      <td>-1.579369</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>5</td>
+      <td>True</td>
+      <td>-1.486437</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-2.914180</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>6</td>
+      <td>True</td>
+      <td>-0.859284</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>7</td>
+      <td>True</td>
+      <td>-0.334542</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="output_area">
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>
+<code>
+
+Model summary for event: 2
+</code>
+</pre>
+</div>
+</div>
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<tbody>
+    <tr>
+      <th>model</th>
+      <td>lifelines.CoxPHFitter</td>
+    </tr>
+    <tr>
+      <th>duration col</th>
+      <td>'X'</td>
+    </tr>
+    <tr>
+      <th>event col</th>
+      <td>'j_2'</td>
+    </tr>
+    <tr>
+      <th>strata</th>
+      <td>X_copy</td>
+    </tr>
+    <tr>
+      <th>baseline estimation</th>
+      <td>breslow</td>
+    </tr>
+    <tr>
+      <th>number of observations</th>
+      <td>9463</td>
+    </tr>
+    <tr>
+      <th>number of events observed</th>
+      <td>161</td>
+    </tr>
+    <tr>
+      <th>partial log-likelihood</th>
+      <td>-987.94</td>
+    </tr>
+    <tr>
+      <th>time fit was run</th>
+      <td>2022-03-22 16:14:20 UTC</td>
+    </tr>
+  </tbody>
+</table>
+</div><table border="1" class="dataframe">
+  <thead>
+    <tr style="text-align: right;">
+      <th style="min-width: 12px;"></th>
+      <th style="min-width: 12px;">coef</th>
+      <th style="min-width: 12px;">exp(coef)</th>
+      <th style="min-width: 12px;">se(coef)</th>
+      <th style="min-width: 12px;">coef lower 95%</th>
+      <th style="min-width: 12px;">coef upper 95%</th>
+      <th style="min-width: 12px;">exp(coef) lower 95%</th>
+      <th style="min-width: 12px;">exp(coef) upper 95%</th>
+      <th style="min-width: 12px;">z</th>
+      <th style="min-width: 12px;">p</th>
+      <th style="min-width: 12px;">-log2(p)</th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th>Z1</th>
+      <td>0.16</td>
+      <td>1.18</td>
+      <td>0.27</td>
+      <td>-0.37</td>
+      <td>0.70</td>
+      <td>0.69</td>
+      <td>2.02</td>
+      <td>0.60</td>
+      <td>0.55</td>
+      <td>0.87</td>
+    </tr>
+    <tr>
+      <th>Z2</th>
+      <td>-1.08</td>
+      <td>0.34</td>
+      <td>0.28</td>
+      <td>-1.63</td>
+      <td>-0.53</td>
+      <td>0.20</td>
+      <td>0.59</td>
+      <td>-3.83</td>
+      <td>&lt;0.005</td>
+      <td>12.92</td>
+    </tr>
+    <tr>
+      <th>Z3</th>
+      <td>-1.67</td>
+      <td>0.19</td>
+      <td>0.29</td>
+      <td>-2.24</td>
+      <td>-1.10</td>
+      <td>0.11</td>
+      <td>0.33</td>
+      <td>-5.74</td>
+      <td>&lt;0.005</td>
+      <td>26.68</td>
+    </tr>
+    <tr>
+      <th>Z4</th>
+      <td>-0.67</td>
+      <td>0.51</td>
+      <td>0.27</td>
+      <td>-1.19</td>
+      <td>-0.15</td>
+      <td>0.31</td>
+      <td>0.86</td>
+      <td>-2.52</td>
+      <td>0.01</td>
+      <td>6.39</td>
+    </tr>
+    <tr>
+      <th>Z5</th>
+      <td>-0.38</td>
+      <td>0.69</td>
+      <td>0.27</td>
+      <td>-0.90</td>
+      <td>0.15</td>
+      <td>0.41</td>
+      <td>1.16</td>
+      <td>-1.40</td>
+      <td>0.16</td>
+      <td>2.64</td>
+    </tr>
+  </tbody>
+</table><br><div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<tbody>
+    <tr>
+      <th>Concordance</th>
+      <td>0.66</td>
+    </tr>
+    <tr>
+      <th>Partial AIC</th>
+      <td>1985.88</td>
+    </tr>
+    <tr>
+      <th>log-likelihood ratio test</th>
+      <td>55.99 on 5 df</td>
+    </tr>
+    <tr>
+      <th>-log2(p) of ll-ratio test</th>
+      <td>33.51</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="output_area">
+<div class="output_html rendered_html output_subarea ">
+<div>
+<style scoped="scoped">
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe">
+<thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th></th>
+      <th>n_jt</th>
+      <th>success</th>
+      <th>alpha_jt</th>
+    </tr>
+    <tr>
+      <th>J</th>
+      <th>X</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+<tbody>
+    <tr>
+      <th rowspan="22" valign="top">2</th>
+      <th>1</th>
+      <td>29</td>
+      <td>True</td>
+      <td>-1.891318</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>11</td>
+      <td>True</td>
+      <td>-2.715119</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>19</td>
+      <td>True</td>
+      <td>-2.029019</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>15</td>
+      <td>True</td>
+      <td>-2.143387</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>17</td>
+      <td>True</td>
+      <td>-1.891328</td>
+    </tr>
+    <tr>
+      <th>6</th>
+      <td>11</td>
+      <td>True</td>
+      <td>-2.224464</td>
+    </tr>
+    <tr>
+      <th>8</th>
+      <td>6</td>
+      <td>True</td>
+      <td>-2.633376</td>
+    </tr>
+    <tr>
+      <th>9</th>
+      <td>8</td>
+      <td>True</td>
+      <td>-2.231573</td>
+    </tr>
+    <tr>
+      <th>10</th>
+      <td>7</td>
+      <td>True</td>
+      <td>-2.259989</td>
+    </tr>
+    <tr>
+      <th>11</th>
+      <td>11</td>
+      <td>True</td>
+      <td>-1.667235</td>
+    </tr>
+    <tr>
+      <th>12</th>
+      <td>3</td>
+      <td>True</td>
+      <td>-2.838670</td>
+    </tr>
+    <tr>
+      <th>13</th>
+      <td>6</td>
+      <td>True</td>
+      <td>-2.067073</td>
+    </tr>
+    <tr>
+      <th>15</th>
+      <td>3</td>
+      <td>True</td>
+      <td>-2.584596</td>
+    </tr>
+    <tr>
+      <th>16</th>
+      <td>4</td>
+      <td>True</td>
+      <td>-2.178489</td>
+    </tr>
+    <tr>
+      <th>17</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-3.370445</td>
+    </tr>
+    <tr>
+      <th>18</th>
+      <td>2</td>
+      <td>True</td>
+      <td>-2.628716</td>
+    </tr>
+    <tr>
+      <th>19</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-3.205144</td>
+    </tr>
+    <tr>
+      <th>20</th>
+      <td>2</td>
+      <td>True</td>
+      <td>-2.415453</td>
+    </tr>
+    <tr>
+      <th>22</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-2.842736</td>
+    </tr>
+    <tr>
+      <th>23</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-2.658322</td>
+    </tr>
+    <tr>
+      <th>24</th>
+      <td>1</td>
+      <td>True</td>
+      <td>-2.411368</td>
+    </tr>
+    <tr>
+      <th>25</th>
+      <td>2</td>
+      <td>True</td>
+      <td>-1.384788</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+  
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.sections", "toc.integrate", "header.autohide"], "search": "../assets/javascripts/workers/search.16e2a7d4.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.5a2dcb6a.min.js"></script>
+      
+        <script src="../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+    
+  </body>
+</html>

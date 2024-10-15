@@ -1,0 +1,16 @@
+lifelines==0.26.4
+matplotlib==3.5.1
+numpy==1.23.4
+pandarallel==1.5.7
+pandas==1.4.1
+patsy==0.5.2
+pillow==9.0.1
+psutil==5.9.4
+scikit-learn==1.0.2
+scipy==1.8.0
+statsmodels==0.13.2
+threadpoolctl==3.1.0
+tqdm==4.63.0
+seaborn==0.11.2
+tableone==0.7.10
+pydts==0.7.8
